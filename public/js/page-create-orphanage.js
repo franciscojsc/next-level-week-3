@@ -1,9 +1,9 @@
 const options = {
-  dragging: false,
-  touchZoom: false,
-  doubleClickZoom: false,
-  scrollWheelZoom: false,
-  zoomControl: false,
+  dragging: true,
+  touchZoom: true,
+  doubleClickZoom: true,
+  scrollWheelZoom: true,
+  zoomControl: true,
 };
 
 // create map
@@ -88,4 +88,15 @@ function toggleSelect(event) {
   const input = document.querySelector('[name="open_on_weekends"]');
 
   input.value = button.dataset.value;
+}
+
+function validate(event) {
+  // validate if lat and log not empty
+  const lat = document.querySelector('[name=lat]').value;
+  const lng = document.querySelector('[name=lng]').value;
+
+  if (!lat || !lng) {
+    event.preventDefault();
+    alert('Selecione o local no mapa.', lat, lng);
+  }
 }

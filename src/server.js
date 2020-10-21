@@ -6,6 +6,9 @@ const pages = require('./pages');
 // init the express
 const server = express();
 
+// use body of req
+server.use(express.urlencoded({ extended: true }));
+
 // use the files static
 server.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -18,6 +21,7 @@ server.get('/', pages.index);
 server.get('/orphanage', pages.orphanage);
 server.get('/orphanages', pages.orphanages);
 server.get('/create-orphanage', pages.createOrphanage);
+server.post('/save-orphanage', pages.saveOrphanage);
 
 // turn on server
 server.listen(5500);
